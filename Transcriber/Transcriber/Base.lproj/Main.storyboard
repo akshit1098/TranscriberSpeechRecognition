@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Transcriber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PermissionsVc" id="BYZ-38-t0r" customClass="ViewController" customModule="Transcriber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,6 +30,9 @@
                                         <rect key="frame" x="104.66666666666666" y="107.33333333333337" width="105.33333333333334" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Grant Now"/>
+                                        <connections>
+                                            <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KNM-o8-FNV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -42,6 +45,10 @@
                             <constraint firstItem="h16-01-7xy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m83-dy-i66"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="dKk-nD-46o" id="cpM-kQ-cxy"/>
+                        <outlet property="label" destination="ouK-w7-igK" id="gW1-N5-afQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,10 +119,6 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Wa0-Pp-2LZ" id="yuY-sg-MHJ"/>
-                            <outlet property="delegate" destination="Wa0-Pp-2LZ" id="XRQ-K3-XOo"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Transcriptions" id="cbJ-13-pyw"/>
                 </tableViewController>
