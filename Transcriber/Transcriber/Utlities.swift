@@ -9,6 +9,9 @@ import Foundation
 
 
 class Utilities{
+    
+    var DateTimeString: String?
+    
     func getDocsDirectory()->URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         
@@ -28,12 +31,26 @@ class Utilities{
     
     
     func getDateAndTime()->String{
+
+        if let dateT = DateTimeString{
+            return dateT
+        }
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
-        
+
         let timeString = formatter.string(from: date)
         return timeString
+    }
+    
+    func getTextUrl()->URL?{
+        do{
+            let textUrl = try getDocsDirectory().appendingPathComponent(getDateAndTime() + ".txt")
+            return textUrl
+            
+        }catch _ {
+            return nil
+        }
     }
     
     

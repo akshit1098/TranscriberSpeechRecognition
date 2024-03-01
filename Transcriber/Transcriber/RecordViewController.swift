@@ -13,13 +13,17 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     
     var audioRec: AVAudioRecorder?
     var recFileUrl: URL!
+    var textFileUrl: URL!
     
     var audioPlayer: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recFileUrl = Utilities().getAudioFileUrl()
+        
+        let utils = Utilities()
+        recFileUrl = utils.getAudioFileUrl()
+        textFileUrl = utils.getTextUrl()
         print("grantk " + recFileUrl!.absoluteString)
         recordAudio()
 
@@ -128,6 +132,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
             if result.isFinal{
                 let text = result.bestTranscription.formattedString
                 self.textView.text = text
+                do{
+                    try text.write(to: self.textFileUrl, atomically: true, encoding: String.Encoding.utf8)
+                }catch{
+                    
+                }
             }
         })
     }
