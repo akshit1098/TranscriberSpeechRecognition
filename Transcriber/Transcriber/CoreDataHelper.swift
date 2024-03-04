@@ -8,6 +8,7 @@
 import Foundation
 
 import CoreData
+import UIKit
 
 class CoreDataHelper{
     
@@ -20,6 +21,32 @@ class CoreDataHelper{
             else{
                 print("CoreData Fine")
             }
+        }
+    }
+    
+    func getContext()->NSManagedObjectContext{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    
+    func storeTranscription(audioFileUrl: String, textFileUrl: String){
+        let context = getContext()
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Transcription", in: context)
+        
+        let transc = NSManagedObject(entity: entity!, insertInto: context)
+        
+        transc.setValue(audioFileUrl, forKey: "audioFileUrlString")
+        
+        transc.setValue(textFileUrl, forKey: "textFileUrlString")
+
+        do{
+            try context.save()
+            print("grantk saved...")
+        }
+        catch{
+            
         }
     }
     
